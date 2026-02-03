@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   BENTO DESIGN SYSTEM
+   Dark Theme + Emerald Accents
+   ============================================ */
+
+:root {
+  --bg-primary: #0a0a0d;
+  --bg-secondary: #141416;
+  --surface: #1c1c1f;
+  --surface-hover: #242428;
+
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-glow: rgba(16, 185, 129, 0.2);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-radius-lg: 1.5rem;
+  --border-radius-xl: 2rem;
+}
+
+input,
+select,
+textarea {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--emerald-500);
+  box-shadow: 0 0 0 2px var(--emerald-glow);
+}
+
+option {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+@layer components {
+
+  /* Bento Card Styles */
+  .bento-card {
+    @apply relative overflow-hidden transition-all duration-300;
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .bento-card:hover {
+    @apply border-emerald-500/30;
+    background-color: var(--surface-hover);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .bento-header {
+    @apply flex items-center justify-between mb-4;
+  }
+
+  .bento-title {
+    @apply text-lg font-semibold text-white tracking-tight;
+  }
+
+  .bento-badge {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background-color: var(--emerald-glow);
+    color: var(--emerald-500);
+  }
+
+  /* Stat Card Specifics */
+  .stat-value {
+    @apply text-3xl font-bold text-white mb-1;
+  }
+
+  .stat-label {
+    @apply text-sm text-slate-400 font-medium;
+  }
+
+  /* List Items */
+  .list-item-modern {
+    @apply flex items-center p-3 rounded-2xl transition-colors;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+  }
+
+  .list-item-modern:hover {
+    @apply border-slate-700;
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Navigation Sidebar Styles */
+  .nav-sidebar {
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .nav-link {
+    @apply flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-white hover:bg-white/5;
+  }
+
+  .nav-link.active {
+    @apply text-emerald-500 bg-emerald-500/5;
+    border: 1px solid rgba(16, 185, 129, 0.1);
+  }
+
+  /* Emerald Button */
+  .btn-emerald {
+    @apply px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium transition-all hover:bg-emerald-500 active:scale-95 shadow-lg shadow-emerald-900/20 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply px-4 py-2 rounded-xl bg-white/5 text-slate-300 font-medium transition-all hover:bg-white/10 active:scale-95 border border-white/5;
+  }
+
+  /* Modern Table */
+  .table-modern {
+    @apply w-full text-left;
+  }
+
+  .table-modern thead th {
+    @apply py-4 px-6 text-xs font-bold uppercase tracking-widest text-slate-500 border-b border-white/5;
+  }
+
+  .table-modern tbody tr {
+    @apply border-b border-white/5 transition-colors hover:bg-white/5;
+  }
+
+  .table-modern tbody td {
+    @apply py-4 px-6;
+  }
+}
+
+/* Custom Grid Layouts */
+.bento-grid-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1280px) {
+  .bento-grid-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+.glow-emerald {
+  filter: drop-shadow(0 0 8px var(--emerald-glow));
+}
+
+/* Shake Animation for Errors */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
